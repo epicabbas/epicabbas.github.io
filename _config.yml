@@ -7,8 +7,7 @@ first_name: Abbas Hussain
 middle_name: 
 last_name: Muzammil
 email: abbas.muzammil2399@gmail.com
-contact_note: >
-  You can reach out to me through email.
+contact_note: You can reach out to me through email.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Personal Website of Abbas Hussain Muzammil
 footer_text: >
