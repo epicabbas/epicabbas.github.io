@@ -1,8 +1,10 @@
 ---
 layout: post
-date: 2015-10-22 15:59:00-0400
+date: 2024-12-14
 inline: true
 related_posts: false
 ---
 
-A simple inline announcement.
+Graduated with a Master's in Computer Science from [Cleveland State University](https://www.csuohio.edu/) with 3.7/4.0 grade.
+
+
