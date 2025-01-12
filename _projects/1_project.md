@@ -1,7 +1,7 @@
 ---
 layout: page
 title: CommunitySOS
-description: with background image
+description: A platform for any community to seek out and lend help. Won HackPSU Hackathon Spring 2024 for developing this platform.
 img: assets/img/community_sos.jpg
 importance: 1
 github: https://github.com/kynhix/HackPSU2024-Community-SOS
