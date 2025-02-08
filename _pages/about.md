@@ -22,7 +22,7 @@ social: true # includes social icons at the bottom of the page
 Hey, you can call me Abbas. As a master’s in computer science student, I can add value to your organization through my excellent skills in Android and Web development and version control systems with a drive for excellence. 
 I love collaborating with diverse personalities and communities to build great products. 
 
-Beyond coding, I enjoy writing, reading, and teaching tech, and occasionally playing cricket -:)
+Beyond coding, I enjoy writing, reading, and teaching tech, and occasionally playing piano and cricket -:)
 
 Let's connect!
 
