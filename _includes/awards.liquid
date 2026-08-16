@@ -1,0 +1,16 @@
+<div class="awards">
+  {% if site.awards != blank %}
+    {% assign awards = site.awards | sort: 'date' | reverse %}
+    {% if include.limit and site.awards_display.limit %}
+      {% assign awards_limit = site.awards_display.limit %}
+    {% else %}
+      {% assign awards_limit = awards | size %}
+    {% endif %}
+    {% for award in awards limit: awards_limit %}
+      {% include award_card.liquid award=award %}
+    {% endfor %}
+  {% else %}
+    <p>No awards yet — check back soon.</p>
+  {% endif %}
+</div>
+<script defer src="{{ '/assets/js/award_carousel.js' | relative_url | bust_file_cache }}"></script>

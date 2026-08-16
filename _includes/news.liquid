@@ -20,6 +20,19 @@
             <td>
               {% if item.inline %}
                 {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
+                {% if item.project_url or item.award_url %}
+                  <span class="news-links">
+                    {% if item.project_url %}
+                      <a href="{{ item.project_url | relative_url }}">About Project</a>
+                    {% endif %}
+                    {% if item.project_url and item.award_url %}
+                      <span class="news-links__sep">·</span>
+                    {% endif %}
+                    {% if item.award_url %}
+                      <a href="{{ item.award_url | relative_url }}">Award</a>
+                    {% endif %}
+                  </span>
+                {% endif %}
               {% else %}
                 <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
               {% endif %}

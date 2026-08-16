@@ -1,0 +1,128 @@
+{% assign award = include.award %}
+<article class="award-card">
+  {% if award.images and award.images.size > 0 %}
+    {% assign image_count = award.images.size %}
+    <div class="award-card__media{% if image_count > 1 %} award-card__media--carousel{% endif %}" {% if image_count > 1 %}data-award-carousel{% endif %}>
+      <div class="award-card__track"{% if image_count > 1 %} tabindex="0" role="region" aria-label="Award photos"{% endif %}>
+        {% for image in award.images %}
+          <div
+            class="award-card__shot"
+            {% if image.object_position %}
+              style="--award-focal: {{ image.object_position }}"
+            {% endif %}
+          >
+            {%
+              include figure.liquid
+              loading="eager"
+              path=image.path
+              sizes="(min-width: 768px) 400px, 95vw"
+              alt=image.alt
+              title=award.title
+              class="award-card__photo"
+            %}
+          </div>
+        {% endfor %}
+      </div>
+      {% if image_count > 1 %}
+        <button type="button" class="award-card__nav award-card__nav--prev" aria-label="Previous photo">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button type="button" class="award-card__nav award-card__nav--next" aria-label="Next photo">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <div class="award-card__dots" role="tablist" aria-label="Photo slides">
+          {% for image in award.images %}
+            <button
+              type="button"
+              class="award-card__dot{% if forloop.first %} is-active{% endif %}"
+              data-award-dot
+              aria-label="Photo {{ forloop.index }} of {{ image_count }}"
+            ></button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  {% elsif award.img %}
+    <div class="award-card__media">
+      {%
+        include figure.liquid
+        loading="eager"
+        path=award.img
+        sizes="(min-width: 768px) 400px, 95vw"
+        alt=award.img_alt
+        title=award.title
+        class="award-card__photo"
+      %}
+    </div>
+  {% endif %}
+
+  <div class="award-card__body">
+    <div class="award-card__meta">
+      {% if award.prize %}
+        <span class="award-badge award-badge--prize">🥇 {{ award.prize }}</span>
+      {% endif %}
+      {% if award.category %}
+        <span class="award-badge">{{ award.category }}</span>
+      {% endif %}
+    </div>
+
+    <h3 class="award-card__title">{{ award.title }}</h3>
+
+    {% if award.event %}
+      <p class="award-card__event">{{ award.event }}</p>
+    {% endif %}
+
+    <p class="award-card__facts">
+      {% if award.date_display %}
+        <span><i class="fa-regular fa-calendar"></i> {{ award.date_display }}</span>
+      {% elsif award.date %}
+        <span><i class="fa-regular fa-calendar"></i> {{ award.date | date: '%B %Y' }}</span>
+      {% endif %}
+      {% if award.location %}
+        <span><i class="fa-solid fa-location-dot"></i> {{ award.location }}</span>
+      {% endif %}
+    </p>
+
+    {% if award.content %}
+      <div class="award-card__summary">{{ award.content }}</div>
+    {% endif %}
+
+    {% if award.highlights %}
+      <ul class="award-card__highlights">
+        {% for item in award.highlights %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if award.project_name %}
+      <p class="award-card__project">
+        Project:
+        {% if award.project_url %}
+          <a href="{{ award.project_url | relative_url }}">{{ award.project_name }}</a>
+        {% else %}
+          {{ award.project_name }}
+        {% endif %}
+      </p>
+    {% endif %}
+
+    {% if award.stack %}
+      <div class="award-card__stack">
+        {% for tech in award.stack %}
+          <span class="award-chip">{{ tech }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if award.links %}
+      <div class="award-card__links">
+        {% for link in award.links %}
+          <a class="award-link" href="{{ link.url }}" target="_blank" rel="noopener noreferrer">
+            {% if link.icon %}<i class="{{ link.icon }}"></i>{% endif %}
+            {{ link.label }}
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</article>

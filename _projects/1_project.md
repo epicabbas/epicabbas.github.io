@@ -10,7 +10,7 @@ category: work
 related_publications: true
 ---
 
-I won HackPSU Spring 2024 with a team of five members. We developed a platform for any community to seek out and lend help to anyone in the world. We designed and developed the platform using React, Tailwind CSS, and Supabase, an open-source Firebase alternative. We were applauded for the best design using React.
+I won HackPSU Spring 2024 with a team of five members. We developed a platform for any community to seek out and lend help to anyone in the world. We designed and developed the platform using React, Tailwind CSS, and Supabase, an open-source Firebase alternative. We were applauded for the best design using React. [Award]({{ '/awards/' | relative_url }})
 
 
 
