@@ -2,15 +2,16 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: blank # the website title (if blank, full name will be used instead)
+title: blank # the website title (if blank, display_name or full name will be used instead)
 first_name: Abbas Hussain
 middle_name: 
 last_name: Muzammil
+display_name: Abbas Muzammil # name shown in the page title, search results, and banner
 email: abbas.muzammil2399@gmail.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Personal website of Abbas Hussain Muzammil.
+  Personal website of Abbas Muzammil, a software engineer building e-commerce and AI-powered products.
 footer_text: 
-keywords: jekyll, jekyll-theme, academic-website, portfolio-website # add your own keywords or leave empty
+keywords: Abbas Muzammil, Abbas Hussain Muzammil, software engineer, Cleveland State University
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: 👨🏻‍💻 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
@@ -59,9 +60,9 @@ max_width: 930px
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
 # see https://schema.org/docs/faq.html for more information
-serve_og_meta: false # Include Open Graph meta tags in the HTML head
-serve_schema_org: false # Include Schema.org in the HTML head
-og_image: # The site-wide (default for all links) Open Graph preview image
+serve_og_meta: true # Include Open Graph meta tags in the HTML head
+serve_schema_org: true # Include Schema.org in the HTML head
+og_image: https://abbas2399.github.io/assets/img/prof_pic.jpg # The site-wide (default for all links) Open Graph preview image
 contact_note: >
   The best way to reach me is by email at abbas [dot] muzammil2399 [at] gmail [dot] com.
 # -----------------------------------------------------------------------------
@@ -148,6 +149,8 @@ collections:
     output: true
     permalink: /projects/:path/
   awards:
+    output: false
+  snapshots:
     output: false
 
 announcements:

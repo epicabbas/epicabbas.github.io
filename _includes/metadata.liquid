@@ -14,7 +14,12 @@
   <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 {% endif %}
 
-{% capture author_name %}{{ site.first_name }}{% if site.middle_name %} {{ site.middle_name }}{% endif %} {{ site.last_name }}{% endcapture %}
+{% capture official_name %}{{ site.first_name }}{% if site.middle_name %} {{ site.middle_name }}{% endif %} {{ site.last_name }}{% endcapture %}
+{% if site.display_name %}
+  {% assign author_name = site.display_name | strip %}
+{% else %}
+  {% assign author_name = official_name | strip %}
+{% endif %}
 
 <!-- Standard metadata -->
 <meta charset="utf-8">
@@ -112,16 +117,16 @@
     {% capture link %}https://www.scopus.com/authid/detail.uri?authorId={{ site.scopus_id }}{% endcapture %}
     {% assign sameaslinks = sameaslinks | push: link %}
   {% endif %}
-  {% if site.github_username %}
-    {% capture link %}https://github.com/{{ site.github_username }}{% endcapture %}
+  {% if site.github_username or site.data.socials.github_username %}
+    {% capture link %}https://github.com/{{ site.github_username | default: site.data.socials.github_username }}{% endcapture %}
     {% assign sameaslinks = sameaslinks | push: link %}
   {% endif %}
   {% if site.telegram_username %}
     {% capture link %}https://telegram.me/{{ site.telegram_username }}{% endcapture %}
     {% assign sameaslinks = sameaslinks | push: link %}
   {% endif %}
-  {% if site.linkedin_username %}
-    {% capture link %}https://www.linkedin.com/in/{{ site.linkedin_username }}{% endcapture %}
+  {% if site.linkedin_username or site.data.socials.linkedin_username %}
+    {% capture link %}https://www.linkedin.com/in/{{ site.linkedin_username | default: site.data.socials.linkedin_username }}{% endcapture %}
     {% assign sameaslinks = sameaslinks | push: link %}
   {% endif %}
   {% if site.x_username %}
@@ -204,8 +209,8 @@
     {% capture link %}https://facebook.com/{{ site.facebook_id }}{% endcapture %}
     {% assign sameaslinks = sameaslinks | push: link %}
   {% endif %}
-  {% if site.youtube_id %}
-    {% capture link %}https://youtube.com/@{{ site.youtube_id }}{% endcapture %}
+  {% if site.youtube_id or site.data.socials.youtube_id %}
+    {% capture link %}https://youtube.com/@{{ site.youtube_id | default: site.data.socials.youtube_id }}{% endcapture %}
     {% assign sameaslinks = sameaslinks | push: link %}
   {% endif %}
   {% if site.discord_id %}
@@ -216,26 +221,32 @@
     {% capture link %}https://www.zotero.org/{{ site.zotero_username }}{% endcapture %}
     {% assign sameaslinks = sameaslinks | push: link %}
   {% endif %}
-  {% if sameaslinks != blank %}
-    {% assign sameaslinks = sameaslinks | split: '' %}
-  {% endif %}
-
   <script type="application/ld+json">
     {
-        "author":
-        {
+        "@context": "https://schema.org",
+        "@type": "{% if page.url == '/' %}Person{% elsif is_blog_post %}BlogPosting{% else %}WebSite{% endif %}",
+        "name": "{{ author_name }}",
+        {% if official_name != author_name %}
+        "alternateName": "{{ official_name | strip }}",
+        {% endif %}
+        {% if page.url == '/' %}
+        "givenName": "{{ site.first_name }}",
+        "familyName": "{{ site.last_name }}",
+        "jobTitle": "Software Engineer",
+        {% if site.og_image %}
+        "image": "{{ site.og_image }}",
+        {% endif %}
+        {% endif %}
+        "url": "{{ site.url }}{{ site.baseurl }}/",
+        "description": "{% if page.description %}{{ page.description | strip_newlines | escape }}{% elsif site.description %}{{ site.description | strip_newlines | escape }}{% endif %}",
+        "headline": "{% if page.url == '/' %}{{ author_name }}{% elsif page.title %}{{ page.title }}{% else %}{{ author_name }}{% endif %}",
+        {% if sameaslinks.size > 0 %}
+        "sameAs": {{ sameaslinks | jsonify }},
+        {% endif %}
+        "author": {
             "@type": "Person",
             "name": "{{ author_name }}"
-        },
-        "url": "{{ page.url | prepend: site.baseurl | prepend: site.url }}",
-        "@type": "{% if is_blog_post %}BlogPosting{% else %}WebSite{% endif %}",
-        "description": "{% if page.description %}{{ page.description }}{% else if site.description %}{{ site.description }}{% endif %}",
-        "headline": "{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}",
-        {% if sameaslinks != blank %}
-        "sameAs": {{ sameaslinks }},
-        {% endif %}
-        "name": "{{ author_name }}",
-        "@context": "https://schema.org"
+        }
     }
   </script>
 {% endif %}

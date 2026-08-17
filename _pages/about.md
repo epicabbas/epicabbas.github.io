@@ -2,6 +2,7 @@
 layout: about
 title: about
 permalink: /
+description: Personal website of Abbas Muzammil, a software engineer building e-commerce and AI-powered products.
 # subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
 
 profile:
@@ -17,7 +18,7 @@ news: true # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
-Hey, you can call me Abbas.
+I'm Abbas Muzammil — you can call me Abbas.
 
 My journey into tech started simply by fixing broken computers. One thing led to another, and my curiosity drove me to study Computer Science, eventually going deeper into the field by earning my Master's in CS at Cleveland State University.
 
