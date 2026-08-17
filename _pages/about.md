@@ -19,14 +19,11 @@ social: true # includes social icons at the bottom of the page
 ---
 Hey, you can call me Abbas.
 
-I'm a Software Engineer at Flusso Faucets, where I'm building a modern e-commerce platform using Python, Django, HTMX, and Celery. From designing clean interfaces to automating backend workflows, I enjoy owning the full picture of a product.
+My journey into tech started simply by fixing broken computers. One thing led to another, and my curiosity drove me to study Computer Science, eventually going deeper into the field by earning my Master's in CS at Cleveland State University.
 
-I'm drawn to AI, automation, robotics, and good design — anything that makes technology feel effortless for the people using it.
+Today, I'm a software engineer at Isenberg Bath Corp. I'm part of a team that is revolutionizing the kitchen & bath industry by building a modern, convenient e-commerce platform where manufacturers and showroom owners can display, quote, and sell their products with ease. With a catalog of over 1M+ products, we are integrating manufacturer data and utilizing tools like Typesense to ensure lightning-fast product discovery, all powered by robust data engineering pipelines. 
 
-Right now, I'm building scalable products that serve thousands of users and integrating AI into workflows that help businesses move faster.
+Beyond code, I enjoy calisthenics, music, travelling, playing badminton, and playing the piano! :)
 
-Beyond code, I enjoy writing, reading, teaching tech, and occasionally playing piano and cricket :)
-
-Let's connect...
 
 
