@@ -1,5 +1,5 @@
 {% assign award = include.award %}
-<article class="award-card">
+<article class="award-card{% if award.full_image %} award-card--full{% endif %}">
   {% if award.images and award.images.size > 0 %}
     {% assign image_count = award.images.size %}
     <div class="award-card__media{% if image_count > 1 %} award-card__media--carousel{% endif %}" {% if image_count > 1 %}data-award-carousel{% endif %}>

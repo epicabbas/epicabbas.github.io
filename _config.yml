@@ -150,7 +150,7 @@ collections:
     permalink: /projects/:path/
   awards:
     output: false
-  snapshots:
+  gallery:
     output: false
 
 announcements:

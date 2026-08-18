@@ -1,0 +1,60 @@
+{% assign gallery_items = site.gallery | sort: 'date' | reverse %}
+{% assign gallery_count = gallery_items | size %}
+
+<div class="gallery">
+  {% if gallery_count > 0 %}
+    {% assign categories = gallery_items | map: 'category' | compact | uniq %}
+
+    <p class="gallery-lede">
+      The path from graduate school to what I build now — jobs, a hackathon win, and the rest of the story. Life photos belong here too; those are next.
+    </p>
+
+    <input class="gallery-filter-input" type="radio" name="gallery-filter" id="gallery-all" checked>
+    {% for category in categories %}
+      <input
+        class="gallery-filter-input"
+        type="radio"
+        name="gallery-filter"
+        id="gallery-{{ category | slugify }}"
+      >
+    {% endfor %}
+
+    {% if categories.size > 1 %}
+      <div class="gallery-filters" role="tablist" aria-label="Filter gallery">
+        <label class="gallery-filter" for="gallery-all">All</label>
+        {% for category in categories %}
+          <label class="gallery-filter" for="gallery-{{ category | slugify }}">{{ category }}</label>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="gallery-journey">
+      {% for item in gallery_items %}
+        {% include gallery_card.liquid item=item %}
+      {% endfor %}
+    </div>
+
+    <style>
+      {% for category in categories %}
+        #gallery-{{ category | slugify }}:checked ~ .gallery-journey .gallery-stop:not([data-category="{{ category | slugify }}"]) {
+          display: none;
+        }
+        #gallery-{{ category | slugify }}:checked ~ .gallery-filters label[for="gallery-{{ category | slugify }}"] {
+          background-color: var(--global-theme-color);
+          border-color: var(--global-theme-color);
+          color: var(--global-hover-text-color);
+        }
+      {% endfor %}
+      #gallery-all:checked ~ .gallery-filters label[for="gallery-all"] {
+        background-color: var(--global-theme-color);
+        border-color: var(--global-theme-color);
+        color: var(--global-hover-text-color);
+      }
+    </style>
+  {% else %}
+    <p class="gallery-empty">
+      Photos from graduation, travel, hobbies, and other milestones will live here.
+    </p>
+  {% endif %}
+</div>
+<script defer src="{{ '/assets/js/award_carousel.js' | relative_url | bust_file_cache }}"></script>
