@@ -1,10 +1,10 @@
 ---
-title: Cleveland State University
-role: M.S. Computer Science
+title: Graduation
+caption: Graduation
 date: 2024-12-14
-category: school
+category: university
 location: Cleveland, Ohio
-url: https://www.csuohio.edu/
+img: assets/img/csu_graduation.jpg
+img_alt: Abbas in cap and gown on Cleveland State University's campus after graduating
 ---
 
-Graduated with a 3.7/4.0. Advanced subjects in operating systems, algorithms, architecture, Android, and databases.

@@ -2,7 +2,7 @@
 layout: page
 title: gallery
 permalink: /gallery/
-description: Work, school, and the moments in between — in order.
+description: Photos from along the way.
 nav: true
 nav_order: 4
 ---

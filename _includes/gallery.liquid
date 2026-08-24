@@ -1,14 +1,25 @@
 {% assign gallery_items = site.gallery | sort: 'date' | reverse %}
-{% assign gallery_count = gallery_items | size %}
+{% assign photo_count = 0 %}
+{% assign categories = "" | split: "" %}
+
+{% for item in gallery_items %}
+  {% assign has_photos = false %}
+  {% if item.images and item.images.size > 0 %}
+    {% assign has_photos = true %}
+  {% elsif item.img %}
+    {% assign has_photos = true %}
+  {% endif %}
+  {% if has_photos %}
+    {% assign photo_count = photo_count | plus: 1 %}
+    {% if item.category and categories contains item.category %}
+    {% elsif item.category %}
+      {% assign categories = categories | push: item.category %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
 
 <div class="gallery">
-  {% if gallery_count > 0 %}
-    {% assign categories = gallery_items | map: 'category' | compact | uniq %}
-
-    <p class="gallery-lede">
-      The path from graduate school to what I build now — jobs, a hackathon win, and the rest of the story. Life photos belong here too; those are next.
-    </p>
-
+  {% if photo_count > 0 %}
     <input class="gallery-filter-input" type="radio" name="gallery-filter" id="gallery-all" checked>
     {% for category in categories %}
       <input
@@ -28,15 +39,23 @@
       </div>
     {% endif %}
 
-    <div class="gallery-journey">
+    <div class="gallery-grid" aria-label="Photo gallery">
       {% for item in gallery_items %}
-        {% include gallery_card.liquid item=item %}
+        {% assign has_photos = false %}
+        {% if item.images and item.images.size > 0 %}
+          {% assign has_photos = true %}
+        {% elsif item.img %}
+          {% assign has_photos = true %}
+        {% endif %}
+        {% if has_photos %}
+          {% include gallery_card.liquid item=item %}
+        {% endif %}
       {% endfor %}
     </div>
 
     <style>
       {% for category in categories %}
-        #gallery-{{ category | slugify }}:checked ~ .gallery-journey .gallery-stop:not([data-category="{{ category | slugify }}"]) {
+        #gallery-{{ category | slugify }}:checked ~ .gallery-grid .gallery-tile:not([data-category="{{ category | slugify }}"]) {
           display: none;
         }
         #gallery-{{ category | slugify }}:checked ~ .gallery-filters label[for="gallery-{{ category | slugify }}"] {
@@ -57,4 +76,4 @@
     </p>
   {% endif %}
 </div>
-<script defer src="{{ '/assets/js/award_carousel.js' | relative_url | bust_file_cache }}"></script>
+<script defer src="{{ '/assets/js/gallery_slideshow.js' | relative_url | bust_file_cache }}"></script>

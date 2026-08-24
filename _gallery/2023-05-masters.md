@@ -2,7 +2,7 @@
 title: Cleveland State University
 role: Started M.S. in Computer Science
 date: 2023-05-15
-category: school
+category: university
 location: Cleveland, Ohio
 url: https://www.csuohio.edu/
 ---
